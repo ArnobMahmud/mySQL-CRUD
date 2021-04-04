@@ -41,9 +41,7 @@
                     mysqli_query($connect, $InsertData);
 
                     if ($InsertData) {
-                        echo "inserted";
-                    } else {
-                        echo "Not";
+                        header('Location :/php-crud/index.php ');
                     }
                 }
                 ?>
@@ -78,9 +76,10 @@
 
                     <?php
 
-                    $AllStudents = "SELECT * FROM students";
+                    $AllStudents = "SELECT * FROM `students`";
                     $StdData = mysqli_query($connect, $AllStudents);
 
+                    $i = 1;
                     while ($row = mysqli_fetch_assoc($StdData)) {
 
 
@@ -93,16 +92,30 @@
 
                         echo "
                             <tr>
-                                <td>$si</td>
+                                <td>$i</td>
                                 <td>$name</td>
                                 <td>$email</td>
                                 <td>$phone</td>
                                 <td>$address</td>
                                 <td>$joining_date</td>
-                                <td></td>
+                                <td><a class= 'btn btn-danger' href= 'index.php?delete=$si'>Delete</a></td>
                             </tr>";
+                        $i++;
                     }
+                    ?>
 
+                    <?php
+
+                    if (isset($_GET['delete'])) {
+
+                        $stdID = $_GET['delete'];
+                        $stdDelete = "DELETE FROM `students` WHERE Si = '$stdID' ";
+                        $deleted = mysqli_query($connect, $stdDelete);
+
+                        if ($deleted) {
+                            header('Location :/php-crud/');
+                        }
+                    }
                     ?>
 
 

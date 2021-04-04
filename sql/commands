@@ -32,3 +32,6 @@ VALUES (NULL, 'Ovi', 'ovi@gmail.com', '1237878767', 'Uttara, Dhaka, Bangladesh',
 Query ->
 INSERT INTO `students`(`Name`, `Email`, `Phone`, `Address`) 
 VALUES ('$name', '$email', '$phone', '$address')
+
+Delete ->
+DELETE FROM `students` WHERE 0
